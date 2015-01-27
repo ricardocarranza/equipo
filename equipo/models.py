@@ -81,20 +81,86 @@ class Mouse(models.Model):
 	def __unicode__(self):
 		return '%s %s' % (self.marca, self.puerto)
 
+class Red(models.Model):
+	marca     = models.CharField(max_length=75, blank=True)
+	modelo    = models.CharField(max_length=75, blank=True)
+	tipo      = models.CharField(max_length=75, blank=True)
+
+	def __unicode__(self):
+		return '%s %s %s' % (self.marca, self.modelo, self.tipo)
+
+class Print(models.Model):
+	marca     = models.CharField(max_length=75, blank=True)
+	modelo    = models.CharField(max_length=75, blank=True)
+	tipo      = models.CharField(max_length=75, blank=True)
+
+	def __unicode__(self):
+		return '%s %s %s' % (self.marca, self.modelo, self.tipo)
+
+class Monitor(models.Model):
+	marca   = models.CharField(max_length=75, blank=True)
+	tipo    = models.CharField(max_length=75, blank=True)
+	tamano  = models.CharField(max_length=75, blank=True, verbose_name='Tamanio')
+
+	def __unicode__(self):
+		return '%s %s %s' % (self.marca, self.tipo, self.tamano)
+
+class Periferico(models.Model):
+	nombre   = models.CharField(max_length=75, blank=True)
+	marca    = models.CharField(max_length=75, blank=True)
+
+	def __unicode__(self):
+		return '%s %s' % (self.nombre, self.marca)
+
+##########################################################
+
+class Sistema(models.Model):
+	nombre    = models.CharField(max_length=75, blank=True)
+	version   = models.CharField(max_length=75, blank=True)
+
+	def __unicode__(self):
+		return '%s %s' % (self.nombre, self.version)
+
+class Ofimati(models.Model):
+	nombre    = models.CharField(max_length=75, blank=True)
+	version   = models.CharField(max_length=75, blank=True)
+
+	def __unicode__(self):
+		return '%s %s' % (self.nombre, self.version)
+
+class Antiv(models.Model):
+	nombre    = models.CharField(max_length=75, blank=True)
+	version   = models.CharField(max_length=75, blank=True)
+
+	def __unicode__(self):
+		return '%s %s' % (self.nombre, self.version)
 
 
 class FichaTecnica(models.Model):
 	nombre     = models.CharField(max_length=75, verbose_name='PC')
-	usuario    = models.ForeignKey(Usuario)
+	usuario    = models.ForeignKey(Usuario, null=True, blank=True)
 	estado     = models.ForeignKey(Estado)
 	#fecha      = models.DateField(auto_now=True, blank=True)
 	tipo       = models.ForeignKey(TipoEqui)
-	moderboard = models.CharField(max_length=75, verbose_name='Moder Board')
+	moderboard = models.CharField(max_length=75, verbose_name='Motherboard')
 	procesador = models.ForeignKey(Procesador, blank=True)
 	memoria    = models.ForeignKey(Ram, null=True)
 	disco      = models.ForeignKey(Disco, blank=True, verbose_name='Disco Duro', null=True)
-	unidad     = models.ManyToManyField(Unidad)
+	unidad     = models.ManyToManyField(Unidad, verbose_name='Unidades Opticas')
 	video      = models.ForeignKey(Video, null=True)
 	teclado    = models.ForeignKey(Teclado, null=True)
 	mouse      = models.ForeignKey(Mouse, null=True)
+	red        = models.ForeignKey(Red, null=True)
+	impresora  = models.ForeignKey(Print, null=True)
+	monitor    = models.ForeignKey(Monitor, null=True)
+	periferico = models.ManyToManyField(Periferico)
+
+
+
+
+	sistema    = models.ForeignKey(Sistema, null=True, blank=True, verbose_name='Sistema operativo')
+	office     = models.ForeignKey(Ofimati, null=True, blank=True, verbose_name='Sistema ofimatico')
+	antivirus  = models.ForeignKey(Antiv, null=True, blank=True, verbose_name='Anti-virus')
+
+
 

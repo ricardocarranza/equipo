@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Usuario, Estado, TipoEqui, Procesador, FichaTecnica, Ram, Disco, Unidad, Video, Teclado, Mouse
+from models import Usuario, Estado, TipoEqui, Procesador, FichaTecnica, Ram, Disco, Unidad, Video, Teclado, Mouse, Red, Print, Monitor, Periferico, Sistema, Ofimati, Antiv
 
 # Register your models here.
 
@@ -21,6 +21,21 @@ class UnidadAdmin(admin.ModelAdmin):
 class VideoAdmin(admin.ModelAdmin):
 	list_display = ('marca', 'modelo', 'velocidad')
 
+class RedAdmin(admin.ModelAdmin):
+	list_display = ('marca', 'modelo', 'tipo')
+
+class PrintAdmin(admin.ModelAdmin):
+	list_display = ('marca', 'modelo', 'tipo')
+
+class MonitorAdmin(admin.ModelAdmin):
+	list_display = ('marca', 'tipo', 'tamano')
+
+
+
+
+class SistemaAdmin(admin.ModelAdmin):
+	list_display = ('nombre', 'version')
+
 
 
 
@@ -38,9 +53,13 @@ admin.site.register(Unidad, UnidadAdmin)
 admin.site.register(Video, VideoAdmin)
 admin.site.register(Teclado)
 admin.site.register(Mouse)
-
-
-
+admin.site.register(Red, RedAdmin)
+admin.site.register(Print, PrintAdmin)
+admin.site.register(Monitor, MonitorAdmin)
+admin.site.register(Periferico)
+admin.site.register(Sistema, SistemaAdmin)
+admin.site.register(Ofimati)
+admin.site.register(Antiv)
 
 
 admin.site.register(FichaTecnica, FichaAdmin)
