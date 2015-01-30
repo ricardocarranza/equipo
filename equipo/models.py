@@ -135,6 +135,40 @@ class Antiv(models.Model):
 	def __unicode__(self):
 		return '%s %s' % (self.nombre, self.version)
 
+class Compresor(models.Model):
+	nombre    = models.CharField(max_length=75, blank=True)
+	version   = models.CharField(max_length=75, blank=True)
+
+	def __unicode__(self):
+		return '%s %s' % (self.nombre, self.version)
+
+class Pdf(models.Model):
+	nombre    = models.CharField(max_length=75, blank=True)
+	version   = models.CharField(max_length=75, blank=True)
+
+	def __unicode__(self):
+		return '%s %s' % (self.nombre, self.version)
+
+class Grabador(models.Model):
+	nombre    = models.CharField(max_length=75, blank=True)
+	version   = models.CharField(max_length=75, blank=True)
+
+	def __unicode__(self):
+		return '%s %s' % (self.nombre, self.version)
+
+class Navegador(models.Model):
+	nombre    = models.CharField(max_length=75, blank=True)
+	version   = models.CharField(max_length=75, blank=True)
+
+	def __unicode__(self):
+		return '%s %s' % (self.nombre, self.version)
+
+class Otro(models.Model):
+	nombre    = models.CharField(max_length=75, blank=True)
+	version   = models.CharField(max_length=75, blank=True)
+
+	def __unicode__(self):
+		return '%s %s' % (self.nombre, self.version)
 
 class FichaTecnica(models.Model):
 	nombre     = models.CharField(max_length=75, verbose_name='PC')
@@ -157,10 +191,13 @@ class FichaTecnica(models.Model):
 
 
 
-
-	sistema    = models.ForeignKey(Sistema, null=True, blank=True, verbose_name='Sistema operativo')
-	office     = models.ForeignKey(Ofimati, null=True, blank=True, verbose_name='Sistema ofimatico')
-	antivirus  = models.ForeignKey(Antiv, null=True, blank=True, verbose_name='Anti-virus')
-
-
+	sistema    = models.ForeignKey(Sistema,   null=True, blank=True, verbose_name='Sistema operativo')
+	office     = models.ForeignKey(Ofimati,   null=True, blank=True, verbose_name='Sistema ofimatico')
+	antivirus  = models.ForeignKey(Antiv,     null=True, blank=True, verbose_name='Anti-virus')
+	compresor  = models.ForeignKey(Compresor, null=True, blank=True)
+	visualpdf  = models.ManyToManyField(Pdf,  null=True, blank=True, verbose_name='Visualizador pdf')
+	grabador   = models.ForeignKey(Grabador,  null=True, blank=True, verbose_name='Grabador de archivos')
+	navegador  = models.ManyToManyField(Navegador, null=True, blank=True, verbose_name='Navegador Web')
+	otro       = models.ManyToManyField(Otro, null=True, blank=True, verbose_name='Otros')
+	observa    = models.TextField(null=True, blank=True, verbose_name='Observaciones')
 

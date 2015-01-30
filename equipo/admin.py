@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Usuario, Estado, TipoEqui, Procesador, FichaTecnica, Ram, Disco, Unidad, Video, Teclado, Mouse, Red, Print, Monitor, Periferico, Sistema, Ofimati, Antiv
+from models import Usuario, Estado, TipoEqui, Procesador, FichaTecnica, Ram, Disco, Unidad, Video, Teclado, Mouse, Red, Print, Monitor, Periferico, Sistema, Ofimati, Antiv, Compresor, Pdf, Grabador, Navegador, Otro
 
 # Register your models here.
 
@@ -30,7 +30,7 @@ class PrintAdmin(admin.ModelAdmin):
 class MonitorAdmin(admin.ModelAdmin):
 	list_display = ('marca', 'tipo', 'tamano')
 
-
+		
 
 
 class SistemaAdmin(admin.ModelAdmin):
@@ -60,6 +60,11 @@ admin.site.register(Periferico)
 admin.site.register(Sistema, SistemaAdmin)
 admin.site.register(Ofimati)
 admin.site.register(Antiv)
+admin.site.register(Compresor)
+admin.site.register(Pdf)
+admin.site.register(Grabador)
+admin.site.register(Navegador)
+admin.site.register(Otro)
 
 
 admin.site.register(FichaTecnica, FichaAdmin)
